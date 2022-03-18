@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   s.name = "OpenVPNClient"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.summary   = "Objective-C wrapper for OpenVPN library. Compatible with iOS and macOS."
   s.description = <<-DESC
     OpenVPNAdapter is an Objective-C framework that allows to easily configure and establish VPN connection using OpenVPN protocol.
@@ -46,10 +46,10 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.prefix_header_file = false
 
-  asio_path = "../ASIO"
-  lz4_path = "../LZ4"
-  mbedtls_path = "../mbedTLS"
-  openvpn_path = "../OpenVPN3"
+  asio_path = "ASIO"
+  lz4_path = "LZ4"
+  mbedtls_path = "mbedTLS"
+  openvpn_path = "OpenVPN3"
   client_path = "./"
 
   s.xcconfig = {
@@ -84,8 +84,8 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "OpenVPNClient" do |client|
-    client.source_files = "#{client_path}/library/*.{mm}", "#{client_path}/include/*.{hpp}"
-    client.private_header_files = "#{client_path}/include/*.{hpp}"
+    client.source_files = "library/*.{mm}", "include/*.{hpp}"
+    client.private_header_files = "include/*.{hpp}"
 
     client.compiler_flags = "-x objective-c++", "-DUSE_ASIO", "-DUSE_ASIO_THREADLOCAL", "-DASIO_STANDALONE", "-DASIO_NO_DEPRECATED", "-DASIO_HAS_STD_STRING_VIEW", "-DHAVE_LZ4", "-DUSE_MBEDTLS", "-DOPENVPN_FORCE_TUN_NULL", "-DUSE_TUN_BUILDER"
     client.dependency "OpenVPNClient/LZ4"
